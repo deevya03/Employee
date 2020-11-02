@@ -1,0 +1,18 @@
+{% extends 'employees/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="text-center mt-4 col-lg-10" style="font-family:'Antipasto Pro Bold'" >
+            <h3>
+                Employee Name : {{  employee.first_name }} {{ employee.last_name }} </h3>
+                <hr>
+                    <table class="table table-bordered">
+                        <h4 class="text-center alert alert-danger"> Task Description </h4>
+                        <tr> <td> {{ employee.task_details }} </td> </tr>
+
+                    </table>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
