@@ -9,6 +9,11 @@
                     <table class="table table-bordered">
                         <h4 class="text-center alert alert-danger"> Task Description </h4>
                         <tr> <td> {{ employee.task_details }} </td> </tr>
+                        {% if employee.task_completed == "True" %}
+                            <tr> <td> Task Status : Completed </td></tr>
+                        {% else %}
+                            <tr> <td> Task Status : Not Completed </td></tr>
+                        {% endif %}
 
                     </table>
             </p>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Employee
-from django.http import Http404
+from django.http import Http404, HttpResponse
+
 
 # Create your views here.
 
@@ -16,3 +17,7 @@ def task_detail(request, employee_id):
         raise Http404('Employee Not Found')
 
     return render(request, 'employees/task-.html', {'employee': employee})
+
+
+def search(request):
+    return HttpResponse('This is search page.')
