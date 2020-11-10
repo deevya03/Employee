@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Employee
+
 from django.http import Http404, HttpResponse
+from .forms import AddEmployee
 
 
 # Create your views here.
@@ -20,4 +22,19 @@ def task_detail(request, employee_id):
 
 
 def search(request):
-    return HttpResponse('This is search page.')
+    query = request.GET['query']
+    employees_first_name = Employee.objects.filter(first_name__icontains=query)
+    employees_last_name = Employee.objects.filter(last_name__icontains=query)
+    employees = employees_first_name.union(employees_last_name)
+    print(employees)
+    return render(request, 'employees/search.html', {'employees': employees})
+
+
+def add(request):
+    context = {}
+    # create object of form
+    form = AddEmployee()
+    # check if form data is valid
+    print(form)
+
+    return render(request, 'employees/add.html', {'form': form})
