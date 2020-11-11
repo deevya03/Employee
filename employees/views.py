@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Employee
+from .models import Employee, Task
 
 from django.http import Http404, HttpResponse
 from .forms import AddEmployee
@@ -14,11 +14,12 @@ def home(request):
 
 def task_detail(request, employee_id):
     try:
-        employee = Employee.objects.get(id=employee_id)
+        employees = Employee.objects.all()
+        task = Task.objects.get(id=employee_id)
     except Employee.DoesNotExist:
         raise Http404('Employee Not Found')
 
-    return render(request, 'employees/task-.html', {'employee': employee})
+    return render(request, 'employees/task.html', {'employees': employees, 'task': task})
 
 
 def search(request):
